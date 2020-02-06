@@ -18,8 +18,12 @@
 
 
 def verbing(s):
-    """Your code goes here.  Edit this docstring."""
-    return
+    if len(s) < 3:
+        return s
+    elif s.endswith('ing'):
+        return s + 'ly'
+    else:
+        return s + 'ing'
 
 
 # E. not_bad
@@ -31,8 +35,14 @@ def verbing(s):
 # So 'This dinner is not that bad!' yields:
 # This dinner is good!
 def not_bad(s):
-    """Your code goes here.  Edit this docstring."""
-    return
+    if s.find('not') != -1:
+        if s.find('not') < s.find('bad'):
+            new_s = s[:s.index('not')] + 'good' + s[s.index('bad')+3:]
+        else:
+            new_s = s
+    else:
+        new_s = s
+    return new_s
 
 
 # F. front_back
@@ -43,12 +53,24 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
-    """Your code goes here.  Edit this docstring."""
-    return
-
+    if len(a) % 2 == 1:
+        a_front = a[:int((len(a) + 1)/2)]
+        a_back = a[int((len(a) + 1)/2):]
+    else:
+        a_front = a[:int(len(a)/2)]
+        a_back = a[int(len(a)/2):]
+    if len(b) % 2 == 1:
+        b_front = b[:int((len(b) + 1)/2)]
+        b_back = b[int((len(b) + 1)/2):]
+    else:
+        b_front = b[:int(len(b)/2)]
+        b_back = b[int(len(b)/2):]
+    return a_front + b_front + a_back + b_back
 
 # Provided simple test() function used in main() to print
 # what each function returns vs. what it's supposed to return.
+
+
 def test(got, expected):
     """Your code goes here.  Edit this docstring."""
     if got == expected:
